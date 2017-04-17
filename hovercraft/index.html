@@ -1,0 +1,35 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script>
+        var ws = new WebSocket("ws://127.0.0.1:8080/ws");
+        ws.onmessage = function (event) {
+            var iframe = document.getElementById("presentation");
+            switch (event.data) {
+                case  "reload":
+                    iframe.src = "/presentation/index.html";
+                case "next":
+                    var pres = document.getElementById('presentation');
+                    pres.contentWindow.impress.next();
+
+            }
+            };
+    </script>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        iframe#presentation {
+            height: 100%;
+            width: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="presentation">
+        <p>Yeah, you need Javascript, and a modern browser.</p>
+    </iframe>
+</body>
+</html>
